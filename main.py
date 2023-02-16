@@ -15,11 +15,11 @@ num_asked_difficulty = 0
 asked_questions = []
 
 # Loop through the questions
-while num_asked_total < 5:
+while num_asked_total < 4:
     # Select a question with the current difficulty level
     possible_questions = [q for q in questions if q["difficulty"] == difficulty and q not in asked_questions]
-    if not possible_questions:
-        print(f"No more questions at difficulty {difficulty}. Ending test.")
+    if not possible_questions and difficulty == 1:
+        print("No more questions at difficulty 1. Ending test.")
         break
     current_question = random.choice(possible_questions)
 
@@ -43,6 +43,11 @@ while num_asked_total < 5:
         num_asked_difficulty += 1
         num_asked_total += 1
         difficulty = max(difficulty - 1, 1)
+
+    if difficulty < 1:
+        difficulty = 1
+    elif difficulty > 3:
+        difficulty = 3
 
     asked_questions.append(current_question)
 
