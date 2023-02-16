@@ -1,0 +1,52 @@
+[
+    {
+        "question": "What is the output of the following code? x = '3' * 3\nprint(x)",
+        "options": ["333", "9", "333333", "33"],
+        "answer": "333",
+        "difficulty": 1
+    },
+    {
+        "question": "In Python, the list data type is mutable.",
+        "options": ["True", "False"],
+        "answer": "True",
+        "difficulty": 1,
+        "points": 10
+    },
+    {
+        "question": "What is a variable in Python?",
+        "options": [
+            "A value that can change",
+            "A value that can be assigned to an object",
+            "A value that can be assigned to multiple objects",
+            "A value that can never change"
+        ],
+        "answer": "A value that can be assigned to an object",
+        "difficulty": 1,
+        "points": 20
+    },
+
+    {
+        "question": "What is the output of the following code? x = [1, 2, 3]\nprint(x[1:])",
+        "options": ["[1, 2]", "[2, 3]", "[1, 2, 3]", "[1, 3]"],
+        "answer": "[2, 3]",
+        "difficulty": 2
+    },
+    {
+        "question": "What is the output of the following code? x = (1, 2, 3)\ny, z, x = x\nprint(x)",
+        "options": ["(1, 2, 3)", "1", "2", "3"],
+        "answer": "3",
+        "difficulty": 3
+    },
+    {
+        "question": "Which of the following is an example of a Python decorator?",
+        "options": ["@staticmethod", "@property", "@classmethod", "@asyncio.coroutine"],
+        "answer": "@staticmethod",
+        "difficulty": 3
+    },
+    {
+        "question": "\ndef foo(): \n\t x = 1 \n\t def bar(): \n\t\tnonlocal x \n\t\tx += 1 \n\tbar() \n\treturn x\n\nprint(foo())",
+        "options": ["1", "2", "3", "This code will produce a syntax error"],
+        "answer": "2",
+        "difficulty": 4
+    }
+]
