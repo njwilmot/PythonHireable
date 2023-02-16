@@ -26,6 +26,7 @@ while num_asked_total < 4:
 
     # Ask and get the user's answer
     print(f"\nQuestion {num_asked_total + 1}: {current_question['question']}")
+
     for j, option in enumerate(current_question["options"]):
         print(f"{j + 1}. {option}")
 
@@ -34,15 +35,14 @@ while num_asked_total < 4:
 
     # Check the answer and update the score and difficulty level
     if answer == current_question["options"].index(current_question["answer"]) + 1:
-
-        total_score += current_question["point_value"]
-        possible_score += current_question["point_value"]
+        total_score += current_question["point_value"]*current_question["weight"]
+        possible_score += current_question["point_value"]*current_question["weight"]
         num_asked_difficulty += 1
         num_asked_total += 1
         difficulty = min(difficulty + 1, 3)
     else:
 
-        possible_score += current_question["point_value"]
+        possible_score += current_question["point_value"]*current_question["weight"]
         num_asked_difficulty += 1
         num_asked_total += 1
         difficulty = max(difficulty - 1, 1)
@@ -59,4 +59,4 @@ if possible_score > 0:
     score = total_score / possible_score * 100
 else:
     score = 0
-print(f"Final score: {score:.2f}%")
+print(f"\nFinal score: {total_score:.2f}")
