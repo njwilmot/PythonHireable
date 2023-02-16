@@ -4,16 +4,16 @@
         "options": ["True", "False"],
         "answer": "True",
         "difficulty": 1,
-        "points": 10,
-        "weight" : 10
+        "point_value": 10,
+        "weight" : 0.10
     },
     {
         "question": "What is the output of the following code? x = (1, 2, 3)\ny, z, x = x\nprint(x)",
         "options": ["(1, 2, 3)", "1", "2", "3"],
         "answer": "3",
         "difficulty": 1,
-        "points": 20,
-        "weight" : 10
+        "point_value": 20,
+        "weight" : 0.10
     },
     {
         "question": "What is a variable in Python?",
@@ -25,16 +25,16 @@
         ],
         "answer": "A value that can be assigned to an object",
         "difficulty": 1,
-        "points": 20,
-        "weight" : 10
+        "point_value": 20,
+        "weight" : 0.10
     },
     {
         "question": "In Python, the print function automatically adds a newline character at the end.",
         "options": ["True", "False"],
         "answer": "False",
         "difficulty": 1,
-        "points": 10,
-        "weight" : 10
+        "point_value": 10,
+        "weight" : 0.10
     },
     {
         "question": "What is the difference between a list and a tuple in Python?",
@@ -47,8 +47,8 @@
         ],
         "answer": "A list is mutable, a tuple is not",
         "difficulty": 2,
-        "points": 20,
-        "weight" : 20
+        "point_value": 20,
+        "weight" : 0.20
     },
     {
         "question": "What is the difference between deep and shallow copying in Python?",
@@ -61,8 +61,8 @@
         ],
         "answer": "Deep copying creates a new object with a new reference, shallow copying only creates a new reference to the original object",
         "difficulty": 2,
-        "points": 20,
-        "weight" : 20
+        "point_value": 20,
+        "weight" : 0.20
     },
     {
         "question": "What is the difference between deep and shallow copying in Python?",
@@ -75,31 +75,31 @@
         ],
         "answer": "Deep copying creates a new object with a new reference, shallow copying only creates a new reference to the original object",
         "difficulty": 2,
-        "points": 20,
-        "weight" : 20
+        "point_value": 20,
+        "weight" : 0.20
     },
     {
         "question": "What is the output of the following code? x = '3' * 3\nprint(x)",
         "options": ["333", "9", "333333", "33"],
         "answer": "333",
         "difficulty": 2,
-        "points": 20,
-        "weight" : 20
+        "point_value": 20,
+        "weight" : 0.20
     },
     {
         "question": "Which of the following is an example of a Python decorator?",
         "options": ["@staticmethod", "@property", "@classmethod", "@asyncio.coroutine"],
         "answer": "@staticmethod",
         "difficulty": 3,
-        "points": 20,
-        "weight" : 30
+        "point_value": 20,
+        "weight" : 0.30
     },
     {
         "question": "\ndef foo(): \n\t x = 1 \n\t def bar(): \n\t\tnonlocal x \n\t\tx += 1 \n\tbar() \n\treturn x\n\nprint(foo())",
         "options": ["1", "2", "3", "This code will produce a syntax error"],
         "answer": "2",
         "difficulty": 3,
-        "points": 20,
-        "weight" : 30
+        "point_value": 20,
+        "weight" : 0.30
     }
 ]

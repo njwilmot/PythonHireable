@@ -2,13 +2,14 @@ import json
 import random
 
 # Define a list of questions, where each question is a dictionary with the question, the possible answers,
-# and the correct answer
+# the correct answer, the point value, and the difficulty level
 with open('questions.json','r') as f:
     questions = json.load(f)
 
 # Define the initial difficulty level and score
 difficulty = 1
-score = 0
+total_score = 0
+possible_score = 0
 
 num_asked_total = 0
 num_asked_difficulty = 0
@@ -24,7 +25,7 @@ while num_asked_total < 4:
     current_question = random.choice(possible_questions)
 
     # Ask and get the user's answer
-    print(f"Question {num_asked_total + 1}: {current_question['question']}")
+    print(f"\nQuestion {num_asked_total + 1}: {current_question['question']}")
     for j, option in enumerate(current_question["options"]):
         print(f"{j + 1}. {option}")
 
@@ -33,13 +34,15 @@ while num_asked_total < 4:
 
     # Check the answer and update the score and difficulty level
     if answer == current_question["options"].index(current_question["answer"]) + 1:
-        print("Correct!")
-        score += 1
+
+        total_score += current_question["point_value"]
+        possible_score += current_question["point_value"]
         num_asked_difficulty += 1
         num_asked_total += 1
-        difficulty = min(difficulty + 1, 4)
+        difficulty = min(difficulty + 1, 3)
     else:
-        print("Incorrect!")
+
+        possible_score += current_question["point_value"]
         num_asked_difficulty += 1
         num_asked_total += 1
         difficulty = max(difficulty - 1, 1)
@@ -51,5 +54,9 @@ while num_asked_total < 4:
 
     asked_questions.append(current_question)
 
-# Print the final score
-print(f"Final score: {score}/{num_asked_total}")
+# Calculate and print the final score
+if possible_score > 0:
+    score = total_score / possible_score * 100
+else:
+    score = 0
+print(f"Final score: {score:.2f}%")
