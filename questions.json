@@ -1,5 +1,6 @@
 [
     {
+        "id": "q1",
         "question": "In Python, the list data type is mutable.",
         "options": ["True", "False"],
         "answer": "True",
@@ -8,6 +9,7 @@
         "weight" : 0.10
     },
     {
+        "id": "q2",
         "question": "What is the output of the following code? x = (1, 2, 3)\ny, z, x = x\nprint(x)",
         "options": ["(1, 2, 3)", "1", "2", "3"],
         "answer": "3",
@@ -16,6 +18,7 @@
         "weight" : 0.10
     },
     {
+        "id": "q3",
         "question": "What is a variable in Python?",
         "options": [
             "A value that can change",
@@ -29,6 +32,7 @@
         "weight" : 0.10
     },
     {
+        "id": "q4",
         "question": "In Python, the print function automatically adds a newline character at the end.",
         "options": ["True", "False"],
         "answer": "False",
@@ -37,6 +41,7 @@
         "weight" : 0.10
     },
     {
+        "id": "q5",
         "question": "What is the difference between a list and a tuple in Python?",
         "answer_type": "Multiple Choice",
         "options": [
@@ -51,6 +56,7 @@
         "weight" : 0.20
     },
     {
+        "id": "q6",
         "question": "What is the difference between deep and shallow copying in Python?",
         "answer_type": "Multiple Choice",
         "options": [
@@ -65,6 +71,7 @@
         "weight" : 0.20
     },
     {
+        "id": "q7",
         "question": "What is the difference between deep and shallow copying in Python?",
         "answer_type": "Multiple Choice",
         "options": [
@@ -79,6 +86,7 @@
         "weight" : 0.20
     },
     {
+        "id": "q8",
         "question": "What is the output of the following code? x = '3' * 3\nprint(x)",
         "options": ["333", "9", "333333", "33"],
         "answer": "333",
@@ -87,6 +95,7 @@
         "weight" : 0.20
     },
     {
+        "id": "q9",
         "question": "Which of the following is an example of a Python decorator?",
         "options": ["@staticmethod", "@property", "@classmethod", "@asyncio.coroutine"],
         "answer": "@staticmethod",
@@ -95,6 +104,7 @@
         "weight" : 0.30
     },
     {
+        "id": "q10",
         "question": "\ndef foo(): \n\t x = 1 \n\t def bar(): \n\t\tnonlocal x \n\t\tx += 1 \n\tbar() \n\treturn x\n\nprint(foo())",
         "options": ["1", "2", "3", "This code will produce a syntax error"],
         "answer": "2",
