@@ -111,5 +111,62 @@
         "difficulty": 3,
         "point_value": 20,
         "weight" : 0.30
+    },
+    {
+"id": "q11",
+"question": "What is the difference between a generator and a coroutine in Python?",
+"answer_type": "Multiple Choice",
+"options": [
+"A generator is used for creating iterator objects, while a coroutine is used for asynchronous programming",
+"A generator is a type of function that can be paused and resumed, while a coroutine is a function that can be cooperatively scheduled",
+"A generator is a function that returns an iterator, while a coroutine is a function that can be awaited",
+"A generator and a coroutine are the same thing"
+],
+"answer": "A generator is a type of function that can be paused and resumed, while a coroutine is a function that can be cooperatively scheduled",
+"difficulty": 3,
+"point_value": 20,
+"weight" : 0.30
+},
+{
+"id": "q12",
+"question": "What is the difference between a Python module and a package?",
+"answer_type": "Multiple Choice",
+"options": [
+"A module is a single file that contains Python code, while a package is a collection of modules",
+"A module is a collection of packages, while a package is a single file that contains Python code",
+"A module is used for defining classes, while a package is used for defining functions",
+"A module and a package are the same thing"
+],
+"answer": "A module is a single file that contains Python code, while a package is a collection of modules",
+"difficulty": 2,
+"point_value": 20,
+"weight" : 0.20
+},
+    {
+    "id": "q13",
+    "question": "What is the output of the following code?\ndef f(x=2, y=3):\n\tprint(x*y)\n\nf(y=4)",
+    "options": ["8", "12", "6", "4"],
+    "answer": "8",
+    "difficulty": 2,
+    "point_value": 20,
+    "weight" : 0.20
+    },
+    {
+    "id": "q14",
+    "question": "What is the output of the following code? x = [1, 2, 3]\nprint(x.pop())",
+    "options": ["[1, 2]", "3", "[1, 2, 3]", "2"],
+    "answer": "3",
+    "difficulty": 2,
+    "point_value": 20,
+    "weight" : 0.20
+    },
+    {
+    "id": "q15",
+    "question": "What is the output of the following code?\ndef foo(a, b, c):\n\tprint(a, b, c)\n\nx = [1, 2, 3]\nfoo(*x)",
+    "options": ["1 2 3", "[1, 2, 3] None None", "1 2 None", "This code will produce a TypeError"],
+    "answer": "1 2 3",
+    "difficulty": 2,
+    "point_value": 20,
+    "weight" : 0.20
     }
 ]

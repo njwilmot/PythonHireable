@@ -1,56 +1,96 @@
 import json
+import heapq
 import random
+
 # Define a dictionary of questions, where the keys are the question ids and the values are the questions
 with open('questions.json', 'r') as f:
     questions = json.load(f)
-questions_dict = {}
+random.shuffle(questions)
+questions_dict = {q['id']: q for q in questions}
+
+# Create a priority queue for each difficulty level, where the priority is based on the weight of each question
+question_queues = {
+    1: [],
+    2: [],
+    3: []
+}
 for q in questions:
-    q_id = q['id']
-    questions_dict[q_id] = q
+    question_queues[q['difficulty']].append((q['weight'], q['id']))
+
 # Define the initial difficulty level and score
 difficulty = 1
 total_score = 0
 possible_score = 0
 num_asked_total = 0
 num_asked_difficulty = 0
-asked_questions = set()
+num_questions_difficulty = {1: len(question_queues[1]),
+                            2: len(question_queues[2]),
+                            3: len(question_queues[3])}
+asked_questions = {1: {}, 2: {}, 3: {}}
+
 # Loop through the questions
-while num_asked_total < 4:
-    # Select a question with the current difficulty level that hasn't been asked before
-    possible_questions = [questions_dict[q_id] for q_id in questions_dict.keys() if questions_dict[q_id]['difficulty'] == difficulty and q_id not in asked_questions]
-    if not possible_questions and difficulty == 1:
-        print("No more questions at difficulty 1. Ending test.")
+while num_asked_total < len(questions_dict):
+    # Select the next question from the highest-priority queue that has unasked questions
+    while True:
+        if not question_queues[difficulty]:
+            # If all questions at the current difficulty level have been asked, move to the next difficulty level
+            num_questions_difficulty[difficulty] = 0
+            difficulty += 1
+            if difficulty > 3:
+                break
+        else:
+            current_question_weight, current_question_id = heapq.heappop(question_queues[difficulty])
+            if not asked_questions[difficulty].get(current_question_id):
+                current_question = questions_dict[current_question_id]
+                break
+
+    # If all questions have been asked, break out of the loop
+    if difficulty > 3:
         break
-    if not possible_questions:
-        continue
-    current_question = random.choice(possible_questions)
+
+    # Shuffle the list of options
+    options = current_question['options']
+    random.shuffle(options)
+
     # Ask and get the user's answer
+    print(f"\ndifficulty: {current_question['difficulty']}")
     print(f"\nQuestion {num_asked_total + 1}: {current_question['question']}")
-    print(f"\tdiff: {difficulty}")
-    for j, option in enumerate(current_question["options"]):
+    for j, option in enumerate(options):
         print(f"{j + 1}. {option}")
-    question_len = len(current_question['options'])
-    answer = int(input(f"Enter your answer 1-{question_len}: "))
-    # Check the answer and update the score and difficulty level
+    question_len = len(options)
+    while True:
+        answer = input(f"Enter your answer 1-{question_len}: ")
+        try:
+            answer = int(answer)
+            if answer < 1 or answer > question_len:
+                print(f"Invalid answer, please enter a number between 1 and {question_len}")
+            else:
+                break
+        except ValueError:
+            print(f"Invalid answer, please enter a number between 1 and {question_len}")
+
     if answer == current_question["options"].index(current_question["answer"]) + 1:
-        total_score += current_question["point_value"]*current_question["weight"]
-        possible_score += current_question["point_value"]*current_question["weight"]
+        total_score += current_question["point_value"] * current_question["weight"]
+        possible_score += current_question["point_value"] * current_question["weight"]
         num_asked_difficulty += 1
         num_asked_total += 1
-        difficulty = min(difficulty + 1, 3)
+        num_questions_difficulty[difficulty] -= 1
+        asked_questions[difficulty][current_question_id] = True
+        if difficulty < 3:
+            difficulty += 1
     else:
-        possible_score += current_question["point_value"]*current_question["weight"]
+        possible_score += current_question["point_value"] * current_question["weight"]
         num_asked_difficulty += 1
         num_asked_total += 1
-        difficulty = max(difficulty - 1, 1)
-    if difficulty < 1:
-        difficulty = 1
-    elif difficulty > 3:
-        difficulty = 3
-    asked_questions.add(current_question['id'])
-# Calculate and print the final score
-if possible_score > 0:
-    score = total_score / possible_score * 100
-else:
-    score = 0
-print(f"\nFinal score: {total_score:.2f}")
+        num_questions_difficulty[difficulty] -= 1
+        asked_questions[difficulty][current_question_id] = True
+        if difficulty > 1:
+            difficulty -= 1
+
+        # Add the question back to the priority queue with a higher weight
+        current_question['weight'] += 1
+        heapq.heappush(question_queues[difficulty], (current_question['weight'], current_question_id))
+
+# Print the results
+print(f"\nTotal score: {total_score} out of {possible_score}")
+print("Thanks for playing!")
