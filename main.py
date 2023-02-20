@@ -8,14 +8,20 @@ with open('questions.json', 'r') as f:
 random.shuffle(questions)
 questions_dict = {q['id']: q for q in questions}
 
+# Create a list of questions for each difficulty level
+questions_by_difficulty = {1: [], 2: [], 3: []}
+for q in questions:
+    questions_by_difficulty[q['difficulty']].append(q)
+
 # Create a priority queue for each difficulty level, where the priority is based on the weight of each question
 question_queues = {
     1: [],
     2: [],
     3: []
 }
-for q in questions:
-    question_queues[q['difficulty']].append((q['weight'], q['id']))
+for difficulty, qs in questions_by_difficulty.items():
+    for q in qs:
+        heapq.heappush(question_queues[difficulty], (q['weight'], q['id']))
 
 # Define the initial difficulty level and score
 difficulty = 1
@@ -86,11 +92,14 @@ while num_asked_total < len(questions_dict):
         asked_questions[difficulty][current_question_id] = True
         if difficulty > 1:
             difficulty -= 1
-
+        if num_questions_difficulty[difficulty] == 0:
+            print("There are no more questions in the difficulty level.")
+            break
         # Add the question back to the priority queue with a higher weight
         current_question['weight'] += 1
         heapq.heappush(question_queues[difficulty], (current_question['weight'], current_question_id))
 
 # Print the results
-print(f"\nTotal score: {total_score} out of {possible_score}")
-print("Thanks for playing!")
+print(f"\nTotal score: {total_score}")
+
+
