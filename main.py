@@ -1,6 +1,8 @@
 import json
 import random
 import time
+from tabulate import tabulate
+import os.path
 
 
 class AVLTreeNode:
@@ -16,8 +18,6 @@ class AVLTree:
 
         with open('questions.json', 'r') as f:
             self.questions = json.load(f)
-
-        self.start_time = time.time()  # start timer
         # create a dictionary to store questions by ID
         self.questions_by_id = {}
         for q in self.questions:
@@ -30,6 +30,9 @@ class AVLTree:
         self.current_question = None  # initialize current question to None
         self.difficulty = 2  # initialize difficulty to 1
         self.score = 0  # initialize score to 0
+        # initialize the question cache
+        self.question_cache = {}
+        self.start_time = time.time()  # start timer  # start timer
 
     def _height(self, node):
         if node is None:
@@ -96,7 +99,7 @@ class AVLTree:
         root = None
         for difficulty in range(1, 4):
             questions = questions_by_difficulty[difficulty]
-            random.shuffle(questions)
+            random.sample(questions, len(questions))
             for question in questions:
                 root = self._insert(root, question)
         return root
@@ -138,28 +141,31 @@ class AVLTree:
         elapsed_time = int(time.time() - self.start_time)
         minutes = elapsed_time // 60
         seconds = elapsed_time % 60
-        print(f"Time Elapsed: {minutes:02d}:{seconds:02d}")
+        print(f"Time Elapsed: {minutes:02d}:{seconds:02d}\n")
 
         if time.time() - self.start_time >= 60:  # check if 1 minute has passed
             return None
 
+        # check if the current difficulty level is in the cache
+        if self.difficulty in self.question_cache:
+            question = self.question_cache[self.difficulty]
+            # check if the cached question has already been asked
+            if question.data['id'] not in self.asked_questions:
+                self.current_question = question
+                return question.data
+
+        # if the current difficulty level is not in the cache or the cached question has already been asked,
+        # call _get_question to get a new question
         question = self._get_question(self.root)
         while question is not None:
             self.asked_questions.add(question.data['id'])
+            # update the cache with the new question
+            self.question_cache[self.difficulty] = question
             return question.data
 
         # Check if all questions have been asked
         if len(self.asked_questions) == len(self.questions_by_id):
             return None
-
-        # Check if there are no more unanswered questions in the current difficulty
-        questions = [q for q in self.questions_by_id.values() if q.data['difficulty'] == self.difficulty]
-        unanswered_questions = set(q.data['id'] for q in questions) - self.asked_questions
-        if not unanswered_questions:
-            # If all questions in the current difficulty have been asked, end quiz
-            return None
-
-        return None
 
     def answer_question(self, question_id, answer_index):
         if self.current_question is None or question_id != self.current_question.data['id']:
@@ -168,6 +174,7 @@ class AVLTree:
         # check if the answer is correct
         if answer_index == self.current_question.data['index_answer']:
             self.score += self.current_question.data['weight'] * self.current_question.data['points']
+            # self.tester['score'] = self.score
             self.difficulty = min(self.difficulty + 1, 3)  # increase difficulty level if answer is correct
             return True
         else:
@@ -192,27 +199,64 @@ class AVLTree:
             return "executive"
 
 
+class Leaderboard:
+    def __init__(self, name):
+        self.name = name
+
+
+    def display_leaderboard(self, score):
+        # create a dictionary representing the current tester's score
+        tester_score = {'name': self.name, 'score': score}
+
+        # read the existing leaderboard from the file
+        filename = 'leaderboard.json'
+        if os.path.isfile(filename) and os.path.getsize(filename) > 0:
+            with open(filename, 'r') as f:
+                leaderboard_data = json.load(f)
+        else:
+            leaderboard_data = []
+
+        # append the current tester's score to the leaderboard
+        leaderboard_data.append(tester_score)
+
+        # sort the leaderboard by score in descending order
+        leaderboard_data.sort(key=lambda x: x['score'], reverse=True)
+
+        # write the updated leaderboard back to the file
+        try:
+            with open(filename, 'w') as f:
+                json.dump(leaderboard_data, f)
+        except IOError:
+            print(f"Error writing to {filename}.")
+
+        # print the updated leaderboard
+        headers = ["Rank", "Name", "Score"]
+        n = 10  # show only the top 10 scores
+        data = [[i + 1, item['name'], item['score']] for i, item in enumerate(leaderboard_data[:n])]
+        print(tabulate(data, headers=headers))
+
+
 def main():
     quiz = AVLTree()
-
+    name = input("Enter test taker's name: ")
     while True:
         question = quiz.get_question()
         if question is None:
             print("No more questions available!")
             break
 
+        # Display the difficulty level
+        print(f"Difficulty level: {question['difficulty']}")
+
         # Display the question
         print(f"Question: {question['question']}")
 
         # Display the choices
         for i, choice in enumerate(question['options']):
-            print(f"{i + 1}. {choice}")
-
-        # Display the difficulty level
-        print(f"Difficulty level: {question['difficulty']}")
+            print(f"\t{i + 1}. {choice}")
 
         # Get the user's answer
-        answer = input(f"Your answer (1-{len(question['options'])}): ")
+        answer = input(f"\nAnswer (1-{len(question['options'])}): ")
 
         # Check if the answer is valid
         if not answer.isdigit() or int(answer) < 1 or int(answer) > len(question['options']):
@@ -225,9 +269,11 @@ def main():
         else:
             print("Incorrect!")
 
+    leaderboard = Leaderboard(name)
     # Display the final score and score category
-    print(f"Final score: {quiz.get_score()}")
+    print(f"\n\nFinal score: {quiz.get_score()}")
     print(f"Score category: {quiz.get_score_category()}")
+    leaderboard.display_leaderboard(quiz.score)
 
 
 if __name__ == '__main__':
