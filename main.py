@@ -1,6 +1,6 @@
 import json
 import random
-import time
+import time,datetime
 from tabulate import tabulate
 import os.path
 
@@ -203,11 +203,11 @@ class Leaderboard:
     def __init__(self, name):
         self.name = name
 
+    def display_leaderboard(self, score, elapsed_time):
 
-    def display_leaderboard(self, score):
         # create a dictionary representing the current tester's score
-        tester_score = {'name': self.name, 'score': score}
-
+        tester_score = {'name': self.name, 'score': score, 'time': elapsed_time}
+        print("time", elapsed_time)
         # read the existing leaderboard from the file
         filename = 'leaderboard.json'
         if os.path.isfile(filename) and os.path.getsize(filename) > 0:
@@ -230,15 +230,18 @@ class Leaderboard:
             print(f"Error writing to {filename}.")
 
         # print the updated leaderboard
-        headers = ["Rank", "Name", "Score"]
+        headers = ["Rank", "Name", "Score", "Time"]
         n = 10  # show only the top 10 scores
-        data = [[i + 1, item['name'], item['score']] for i, item in enumerate(leaderboard_data[:n])]
+        data = [[i + 1, item['name'], item['score'], time.strftime('%M:%S', time.gmtime(item.get('time', 0)))] for i, item in enumerate(leaderboard_data[:n])]
+
+
         print(tabulate(data, headers=headers))
 
 
 def main():
-    quiz = AVLTree()
     name = input("Enter test taker's name: ")
+    leaderboard = Leaderboard(name)
+    quiz = AVLTree()
     while True:
         question = quiz.get_question()
         if question is None:
@@ -269,11 +272,10 @@ def main():
         else:
             print("Incorrect!")
 
-    leaderboard = Leaderboard(name)
     # Display the final score and score category
     print(f"\n\nFinal score: {quiz.get_score()}")
     print(f"Score category: {quiz.get_score_category()}")
-    leaderboard.display_leaderboard(quiz.score)
+    leaderboard.display_leaderboard(quiz.score, quiz.get_elapsed_time())
 
 
 if __name__ == '__main__':
