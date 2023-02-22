@@ -1,8 +1,8 @@
 import json
-import random
-import time,datetime
-from tabulate import tabulate
 import os.path
+import random
+import time
+from tabulate import tabulate
 
 
 class AVLTreeNode:
@@ -189,11 +189,11 @@ class AVLTree:
 
     def get_score_category(self):
         total_score = self.get_score()
-        if total_score < 20:
+        if total_score < 39:
             return "entry"
-        elif total_score < 30:
+        elif total_score < 49:
             return "junior"
-        elif total_score < 40:
+        elif total_score < 59:
             return "senior"
         else:
             return "executive"
@@ -233,7 +233,6 @@ class Leaderboard:
         headers = ["Rank", "Name", "Score", "Time"]
         n = 10  # show only the top 10 scores
         data = [[i + 1, item['name'], item['score'], time.strftime('%M:%S', time.gmtime(item.get('time', 0)))] for i, item in enumerate(leaderboard_data[:n])]
-
 
         print(tabulate(data, headers=headers))
 
