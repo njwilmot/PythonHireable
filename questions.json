@@ -1,144 +1,398 @@
 [
     {
         "id": "q1",
-        "question": "(true false) A cheese is a cheese",
+        "question": "Easy True or False",
         "options": ["True", "False"],
         "answer": "True",
         "difficulty": 1,
         "points": 10,
-        "weight" : 0.10,    "index_answer": 1,
+        "weight" : 0.10,
+        "index_answer": 1,
         "type":  "tf"
     },
     {
         "id": "q2",
-        "question": "(multiple choice) A cheese is a cheese",
+        "question": "Easy Multiple Choice",
         "options": ["yes", "no", "no", "no"],
         "answer": "yes",
-        "difficulty": 1,    "index_answer": 1,
-        "points": 20,
-        "weight" : 0.10, "type":  "mc"
+        "difficulty": 1,
+        "index_answer": 1,
+        "points": 10,
+        "weight" : 0.20, "type":  "mc"
 
     },
     {
         "id": "q3",
-        "question": "(short coding) A cheese is a cheese",
-        "options": [
-            "cheese",
-            "no cheese",
-            "no cheese",
-            "no cheese"
-        ],
-        "answer": "cheese",
+        "question": "Easy Short Coding",
+        "options":[ "Wrong", "Wrong", "Right", "Wrong"],
+        "answer": "Right",
         "difficulty": 1,
-        "points": 30,
-        "weight" : 0.10,    "index_answer": 1,
+        "points": 10,
+        "weight" : 0.30,
+        "index_answer": 3,
         "type":  "sc"
     },
     {
         "id": "q4",
-        "question": "(long coding) A cheese is a cheese",
+        "question": "Easy Long Coding",
         "options": ["yes", "no"],
         "answer": "yes",
         "difficulty": 1,
-        "points": 40,    "index_answer": 1,
-        "weight" : 0.10,
+        "points": 10,    "index_answer": 1,
+        "weight" : 0.40,
         "type":  "lc"
     },
     {
         "id": "q5",
-        "question": "(true false) A cheese is a cheese",
+        "question": "Med True or False",
         "options": ["True", "False"],
         "answer": "True",
         "difficulty": 2,
-        "points": 10,
-        "weight" : 0.20,
-        "type":  "tf",    "index_answer": 1
+        "points": 15,
+        "weight" : 0.10,
+        "type":  "tf",
+        "index_answer": 1
     },
     {
         "id": "q6",
-        "question": "(multiple choice) A cheese is a cheese",
+        "question": "Med Multiple Choice",
         "options": ["yes", "no", "no", "no"],
         "answer": "yes",
         "difficulty": 2,
-        "points": 20,
-        "weight" : 0.20, "type":  "mc",
-            "index_answer": 1
+        "points": 15,
+        "weight" : 0.20,
+        "type":  "mc",
+        "index_answer": 1
     },
     {
         "id": "q7",
-        "question": "(short coding) A cheese is a cheese",
-        "options": [
-            "cheese",
-            "no cheese",
-            "no chesee",
-            "no chesee"
-        ],
-        "answer": "cheese",
+        "question": "Med Short Coding",
+        "options": [ "Wrong", "Wrong", "Right", "Wrong"],
+        "answer": "Right",
         "difficulty": 2,
-        "points": 30,
-        "weight" : 0.20,
+        "points": 15,
+        "weight" : 0.30,
         "type":  "sc",
-            "index_answer": 1
+        "index_answer": 3
     },
     {
         "id": "q8",
-        "question": "(long coding) A cheese is a cheese",
+        "question": "Med Long Coding",
         "options": ["yes", "no"],
         "answer": "yes",
         "difficulty": 2,
-        "points": 40,
-        "weight" : 0.20,
+        "points": 15,
+        "weight" : 0.40,
         "type":  "lc",
-            "index_answer": 1
+        "index_answer": 1
     },
-
-            {
+    {
         "id": "q9",
-        "question": "(true false) A cheese is a cheese",
+        "question": "Hard True or False",
         "options": ["True", "False"],
         "answer": "True",
         "difficulty": 3,
-        "points": 10,
-                    "index_answer": 1,
-        "weight" : 0.30,
+        "points": 20,
+        "index_answer": 1,
+        "weight" : 0.10,
         "type":  "tf"
     },
     {
         "id": "q10",
-        "question": "(multiple choice) A cheese is a cheese",
+        "question": "Hard Multiple Choice",
         "options": ["yes", "no", "no", "no"],
         "answer": "yes",
         "difficulty": 3,
-            "index_answer": 1,
+        "index_answer": 1,
         "points": 20,
-        "weight" : 0.30, "type":  "mc"
+        "weight" : 0.20,
+        "type":  "mc"
 
     },
     {
         "id": "q11",
-        "question": "(short coding) A cheese is a cheese",
-        "options": [
-            "cheese",
-            "no cheese",
-            "no cheese",
-            "no cheese"
-        ],
-        "answer": "cheese",
-            "index_answer": 1,
+        "question": "Hard Short Coding",
+        "options": [ "Wrong", "Wrong", "Right", "Wrong"],
+        "answer": "Right",
+        "index_answer": 3,
         "difficulty": 3,
-        "points": 30,
+        "points": 20,
         "weight" : 0.30,
         "type":  "sc"
     },
     {
         "id": "q12",
-        "question": "(long coding) A cheese is a cheese",
+        "question": "Hard Long Coding",
         "options": ["yes", "no"],
         "answer": "yes",
         "index_answer": 1,
         "difficulty": 3,
-        "points": 40,
+        "points": 20,
+        "weight" : 0.40,
+        "type":  "lc"
+    },
+    {
+        "id": "q13",
+        "question": "Easy True or False",
+        "options": ["True", "False"],
+        "answer": "True",
+            "index_answer": 1,
+        "difficulty": 1,
+        "points": 10,
+        "weight" : 0.10 ,
+        "type":  "tf"
+    },
+    {
+        "id": "q14",
+        "question": "Easy True or False",
+        "options": ["True", "False"],
+        "answer": "True",
+            "index_answer": 1,
+        "difficulty": 1,
+        "points": 10,
+        "weight" : 0.10 ,
+        "type":  "tf"
+    },
+    {
+        "id": "q15",
+        "question": "Easy multiple choice",
+        "options": ["Wrong", "Wrong", "Right", "Wrong"],
+        "answer": "Right",
+            "index_answer": 3,
+        "difficulty": 1,
+        "points": 10,
+        "weight" : 0.20,
+        "type":  "mc"
+    },
+    {
+        "id": "q16",
+        "question": "Easy multiple choice",
+        "options": ["Wrong", "Wrong", "Right", "Wrong"],
+        "answer": "Right",
+            "index_answer": 3,
+        "difficulty": 1,
+        "points": 10,
+        "weight" : 0.20,
+        "type":  "mc"
+    },
+    {
+        "id": "q17",
+        "question": "Easy Short Coding",
+        "options": ["Wrong", "Wrong", "Right", "Wrong"],,
+        "answer": "Right",
+            "index_answer": 3,
+        "difficulty": 1,
+        "points": 10,
         "weight" : 0.30,
+        "type":  "sc"
+    },
+    {
+        "id": "q18",
+        "question": "Easy Short Coding",
+        "options": ["Wrong", "Wrong", "Right", "Wrong"],,
+        "answer": "Right",
+            "index_answer": 3,
+        "difficulty": 1,
+        "points": 10,
+        "weight" : 0.30,
+        "type":  "sc"
+    },
+    {
+        "id": "q19",
+        "question": "Easy Long Coding",
+        "options": ["Wrong", "Wrong", "Right", "Wrong"],,
+        "answer": "Right",
+            "index_answer": 3,
+        "difficulty": 1,
+        "points": 10,
+        "weight" : 0.40,
+        "type":  "lc"
+    },
+    {
+        "id": "q19",
+        "question": "Easy Long Coding",
+        "options": ["Wrong", "Wrong", "Right", "Wrong"],,
+        "answer": "Right",
+            "index_answer": 3,
+        "difficulty": 1,
+        "points": 10,
+        "weight" : 0.40,
+        "type":  "lc"
+    },
+    {
+        "id": "q20",
+        "question": "Med True or False",
+        "options": ["True", "False"],
+        "answer": "True",
+            "index_answer": 1,
+        "difficulty": 2,
+        "points": 15,
+        "weight" : 0.10 ,
+        "type":  "tf"
+    },
+    {
+        "id": "q21",
+        "question": "Med True or False",
+        "options": ["True", "False"],
+        "answer": "True",
+            "index_answer": 1,
+        "difficulty": 2,
+        "points": 15,
+        "weight" : 0.10 ,
+        "type":  "tf"
+    },
+    {
+        "id": "q22",
+        "question": "Med multiple choice",
+        "options": ["Wrong", "Wrong", "Right", "Wrong"],
+        "answer": "Right",
+            "index_answer": 3,
+        "difficulty": 2,
+        "points": 15,
+        "weight" : 0.20,
+        "type":  "mc"
+    },
+    {
+        "id": "q23",
+        "question": "Med multiple choice",
+        "options": ["Wrong", "Wrong", "Right", "Wrong"],
+        "answer": "Right",
+            "index_answer": 3,
+        "difficulty": 2,
+        "points": 15,
+        "weight" : 0.20,
+        "type":  "mc"
+    },
+    {
+        "id": "q24",
+        "question": "Med Short Coding",
+        "options": ["Wrong", "Wrong", "Right", "Wrong"],,
+        "answer": "Right",
+            "index_answer": 3,
+        "difficulty": 2,
+        "points": 15,
+        "weight" : 0.30,
+        "type":  "sc"
+    },
+     {
+        "id": "q25",
+        "question": "Med Short Coding",
+        "options": ["Wrong", "Wrong", "Right", "Wrong"],,
+        "answer": "Right",
+            "index_answer": 3,
+        "difficulty": 2,
+        "points": 15,
+        "weight" : 0.30,
+        "type":  "sc"
+    },
+    {
+        "id": "q26",
+        "question": "Med Long Coding",
+        "options": ["Wrong", "Wrong", "Right", "Wrong"],,
+        "answer": "Right",
+            "index_answer": 3,
+        "difficulty": 2,
+        "points": 15,
+        "weight" : 0.40,
+        "type":  "lc"
+    },
+    {
+        "id": "q27",
+        "question": "Med Long Coding",
+        "options": ["Wrong", "Wrong", "Right", "Wrong"],,
+        "answer": "Right",
+            "index_answer": 3,
+        "difficulty": 2,
+        "points": 15,
+        "weight" : 0.40,
+        "type":  "lc"
+    },
+    {
+        "id": "q28",
+        "question": "Hard True or False",
+        "options": ["True", "False"],
+        "answer": "True",
+            "index_answer": 1,
+        "difficulty": 3,
+        "points": 20,
+        "weight" : 0.10 ,
+        "type":  "tf"
+    },
+    {
+        "id": "q29",
+        "question": "Hard True or False",
+        "options": ["True", "False"],
+        "answer": "True",
+            "index_answer": 1,
+        "difficulty": 3,
+        "points": 20,
+        "weight" : 0.10 ,
+        "type":  "tf"
+    },
+    {
+        "id": "q30",
+        "question": "Hard multiple choice",
+        "options": ["Wrong", "Wrong", "Right", "Wrong"],
+        "answer": "Right",
+            "index_answer": 3,
+        "difficulty": 3,
+        "points": 20,
+        "weight" : 0.20,
+        "type":  "mc"
+    },
+    {
+        "id": "q31",
+        "question": "Hard multiple choice",
+        "options": ["Wrong", "Wrong", "Right", "Wrong"],
+        "answer": "Right",
+            "index_answer": 3,
+        "difficulty": 3,
+        "points": 20,
+        "weight" : 0.20,
+        "type":  "mc"
+    },
+    {
+        "id": "q32",
+        "question": "Hard Short Coding",
+        "options": ["Wrong", "Wrong", "Right", "Wrong"],
+        "answer": "Right",
+            "index_answer": 3,
+        "difficulty": 3,
+        "points": 20,
+        "weight" : 0.30,
+        "type":  "sc"
+    },
+    {
+        "id": "q33",
+        "question": "Hard Short Coding",
+        "options": ["Wrong", "Wrong", "Right", "Wrong"],
+        "answer": "Right",
+            "index_answer": 3,
+        "difficulty": 3,
+        "points": 20,
+        "weight" : 0.30,
+        "type":  "sc"
+    },
+    {
+        "id": "q34",
+        "question": "Hard Long Coding",
+        "options": ["Wrong", "Wrong", "Right", "Wrong"],,
+        "answer": "Right",
+            "index_answer": 3,
+        "difficulty": 3,
+        "points": 20,
+        "weight" : 0.40,
+        "type":  "lc"
+    },
+    {
+        "id": "q35",
+        "question": "Hard Long Coding",
+        "options": ["Wrong", "Wrong", "Right", "Wrong"],,
+        "answer": "Right",
+            "index_answer": 3,
+        "difficulty": 3,
+        "points": 20,
+        "weight" : 0.40,
         "type":  "lc"
     }
 ]
